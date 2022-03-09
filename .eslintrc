@@ -1,0 +1,69 @@
+{
+  "extends": ["airbnb", "airbnb/hooks", "eslint-config-prettier", "prettier"],
+  "plugins": ["react"],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "rules": {
+    "default-param-last": "off",
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "no-alert": 0,
+    "jsx-a11y/no-autofocus": 0,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "always"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
+    "curly": ["error"],
+    "max-depth": ["warn", 4],
+    "id-length": [
+      "warn",
+      {
+        "exceptions": ["i", "j", "a", "b"],
+        "min": 2
+      }
+    ],
+    "no-lonely-if": ["error"],
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-restricted-syntax": "off",
+    "class-methods-use-this": "off",
+    "jsx-a11y/href-no-hash": ["off"],
+    "jsx-a11y/anchor-is-valid": ["off"],
+    "react/state-in-constructor": ["off"],
+    "react/jsx-props-no-spreading": ["off"],
+    "react/static-property-placement": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  }
+}
