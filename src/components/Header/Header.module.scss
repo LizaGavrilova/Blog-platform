@@ -1,0 +1,117 @@
+.header {
+  background: #FFFFFF;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 80px;
+  padding: 0 22px;
+
+  &_title {
+    font-style: normal;
+    font-weight: normal;
+    white-space: nowrap;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  &_not-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      border: 1px solid white;
+      outline: none; 
+      background: none;
+      cursor: pointer;
+      font-size: 18px !important;
+      line-height: 28px !important;
+      color: rgba(0, 0, 0, 0.85);
+
+      &:first-child {           
+        margin-right: 5px;
+      }
+
+      &:hover, &:focus {
+        background-color: white;
+        border: 1px solid #52C41A;
+        box-sizing: border-box;
+        border-radius: 5px;
+        color: #52C41A;
+      }
+    }
+  }
+
+  &_login-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .create-article {
+    height: 31px;
+    display: flex;
+    align-items: center;
+
+    border: 1px solid white;
+    outline: none; 
+    background: none;
+
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.85);
+    
+    margin-right: 26px;
+
+    &:hover, &:focus {
+      background-color: white;
+      border: 1px solid #52C41A;
+      box-sizing: border-box;
+      border-radius: 5px;
+      color: #52C41A;
+    }
+  }
+
+  .user-name {
+    white-space: nowrap;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.85);
+
+    margin-right: 12px;
+  }
+
+  .user-img {
+    width: 46px;
+    height: 46px;
+    margin-right: 20px;
+  }
+
+  .log-out {
+    height: 51px;
+    display: flex;
+    align-items: center;
+
+    border: 1px solid white;
+    outline: none; 
+    background: none;
+
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.85);
+
+    &:hover, &:focus {
+      border: 1px solid rgba(0, 0, 0, 0.75);
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+  }
+}
