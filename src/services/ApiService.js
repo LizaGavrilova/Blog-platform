@@ -4,7 +4,7 @@ const apiBase = 'https://kata.academy:8021/api/';
 
 const getArticles = async (offset = 0) => {
   const { data } = await axios.get(
-    `${apiBase}articles?limit=10&offset=${offset}`
+    `${apiBase}articles?limit=5&offset=${offset}`
   );
   return data;
 };

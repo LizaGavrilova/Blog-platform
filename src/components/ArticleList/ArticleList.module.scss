@@ -1,0 +1,22 @@
+.article_list {
+  width: 941px;
+  height: calc(100vh - 80px);
+  margin: 0 auto;
+
+  padding: 12px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.spin {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}

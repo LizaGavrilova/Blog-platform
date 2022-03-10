@@ -1,4 +1,4 @@
-import { getArticles } from '../../services/ApiService';
+import { getArticles, getArticle } from '../../services/ApiService';
 
 const addArticles = (articles) => ({
   type: 'ADD_ARTICLES',
@@ -8,17 +8,66 @@ const addArticles = (articles) => ({
 const updateLoading = (value) => ({
   type: 'UPDATE_LOADING',
   payload: value
+});
+
+const updateArticlesCount = (count) => ({
+  type: 'UPDATE_ARTICLES_COUNT',
+  payload: count
+});
+
+const updatePage = (page) => ({
+  type: 'UPDATE_PAGE',
+  payload: page
 })
 
-const getNewArticles = () => async (dispatch) => {
+const updateOffset = (offset) => ({
+  type: 'UPDATE_OFFSET',
+  payload: offset
+})
+
+const updateArticleData = (data) => ({
+  type: 'UPDATE_ARTICLE_DATA',
+  payload: data
+})
+
+const getArticlesArr = () => async (dispatch) => {
   const data = await getArticles();
-  const { articles } = data;
+  const { articles, articlesCount} = data;
   dispatch(addArticles(articles));
+  dispatch(updateArticlesCount(articlesCount));
+  dispatch(updateLoading(false));
+};
+
+const getNewArticles = (page) => async (dispatch) => {
+  dispatch(updateLoading(true));
+  const offset = (page - 1) * 5;
+  dispatch(updateOffset(offset));
+
+  dispatch(updatePage(page));
+
+  const data = await getArticles(offset);
+  const { articles, articlesCount} = data;
+  dispatch(addArticles(articles));
+  dispatch(updateArticlesCount(articlesCount)); 
+  dispatch(updateLoading(false)); 
+};
+
+const getArticleData = (slug) => async (dispatch) => {
+  dispatch(updateLoading(true));
+  const data = await getArticle(slug);
+  const { article } = data;
+  dispatch(updateArticleData(article));
   dispatch(updateLoading(false));
 }
 
 export {
   addArticles,
   updateLoading,
-  getNewArticles
+  updateArticlesCount,
+  updatePage,
+  updateOffset,
+  updateArticleData,
+  getArticlesArr,
+  getNewArticles,
+  getArticleData
 };
