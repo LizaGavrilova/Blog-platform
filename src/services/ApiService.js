@@ -14,9 +14,36 @@ const getArticle = async (id) => {
     `${apiBase}articles/${id}`
   );
   return data;
+};
+
+const postRegisterUser = async (username, email, password) => {
+  const { data } = await axios.post(
+    `${apiBase}users`, {
+      user: {
+        username,
+        email,
+        password
+      }
+    }
+  );
+  return data;
+};
+
+const postExistingUser = async (email, password) => {
+  const { data } = await axios.post(
+    `${apiBase}users/login`, {
+      user: {
+        email,
+        password
+      }
+    }
+  );
+  return data;
 }
 
 export {
   getArticles,
-  getArticle
+  getArticle,
+  postRegisterUser,
+  postExistingUser
 };

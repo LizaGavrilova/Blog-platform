@@ -70,7 +70,7 @@ function Article() {
               </div>
             </div>
             <div className={classes.foto}>
-              <img src={foto} alt="profile" />
+              <img src={article.author ? article.author.image : foto} alt="profile" />
             </div>
           </div>
         </div>

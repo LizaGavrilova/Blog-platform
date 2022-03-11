@@ -37,7 +37,7 @@
     "id-length": [
       "warn",
       {
-        "exceptions": ["i", "j", "a", "b"],
+        "exceptions": ["i", "j", "a", "b", "_"],
         "min": 2
       }
     ],

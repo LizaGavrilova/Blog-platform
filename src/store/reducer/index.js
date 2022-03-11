@@ -1,9 +1,8 @@
 const initialState = {
   articles: [],
   article: {},
-  user: {
-    isLogin: !!localStorage.getItem('user'),
-  },
+  user: JSON.parse(localStorage.getItem('user')) || {},
+  isLogin: !!localStorage.getItem('user'),
   loading: true,
   articlesCount: 0,
   page: 1,
@@ -46,6 +45,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         article: action.payload
+      }
+
+    case 'UPDATE_IS_LOGIN':
+      return {
+        ...state,
+        isLogin: action.payload
+      }
+
+    case 'UPDATE_USER_DATA':
+      return {
+        ...state,
+        user: action.payload
       }
 
     default:

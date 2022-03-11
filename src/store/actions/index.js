@@ -18,17 +18,27 @@ const updateArticlesCount = (count) => ({
 const updatePage = (page) => ({
   type: 'UPDATE_PAGE',
   payload: page
-})
+});
 
 const updateOffset = (offset) => ({
   type: 'UPDATE_OFFSET',
   payload: offset
-})
+});
 
 const updateArticleData = (data) => ({
   type: 'UPDATE_ARTICLE_DATA',
   payload: data
+});
+
+const updateIsLogin = (value) => ({
+  type: 'UPDATE_IS_LOGIN',
+  payload: value
 })
+
+const updateUserData = (data) => ({
+  type: 'UPDATE_USER_DATA',
+  payload: data
+});
 
 const getArticlesArr = () => async (dispatch) => {
   const data = await getArticles();
@@ -67,6 +77,8 @@ export {
   updatePage,
   updateOffset,
   updateArticleData,
+  updateIsLogin,
+  updateUserData,
   getArticlesArr,
   getNewArticles,
   getArticleData
