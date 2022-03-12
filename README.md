@@ -1,1 +1,1 @@
-https://blog-platform-six.vercel.app
+https://blog-platform-glizagavrilova-yandexru.vercel.app

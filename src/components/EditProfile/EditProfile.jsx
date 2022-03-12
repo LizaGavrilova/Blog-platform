@@ -1,15 +1,33 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { Button, Form, Input } from 'antd';
+
+import { putExistingUser } from '../../services/ApiService';
+import { updateUserData } from '../../store/actions';
 
 import classes from './EditProfile.module.scss';
 
 function EditProfile() {
   const [form] = Form.useForm();
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const user = useSelector((state) => state.user);
   const { username, email } = user 
+
+  const onSubmit = async (values) => {
+    const { username: name, email: mail, password, image } = values;
+    const { token } = JSON.parse(localStorage.getItem('user'));
+
+    const { user: updateUser } = await putExistingUser(name, mail, password, image, token);
+    localStorage.setItem('user', JSON.stringify(updateUser));
+
+    dispatch(updateUserData(updateUser));
+    navigate('/articles');
+  }
 
   return (
     <div className={classes['edit-profile-form']}>
@@ -18,7 +36,7 @@ function EditProfile() {
       </div>
 
       <div className={classes.main}>
-        <Form form={form} name="edit-profile" className={classes.form}>
+        <Form form={form} name="edit-profile" className={classes.form} onFinish={onSubmit}>
           <span className={classes.username}>Username</span>
           <Form.Item name="username"
                     initialValue={username}

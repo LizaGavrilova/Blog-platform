@@ -41,9 +41,27 @@ const postExistingUser = async (email, password) => {
   return data;
 }
 
+const putExistingUser = async (username, email, password, image, token) => {
+  const { data } = await axios.put(
+    `${apiBase}user`, {
+      user: {
+        username,
+        email,
+        password,
+        image,
+      }
+    }, 
+    {
+      headers: { Authorization: `Token ${token}`}
+    }
+  );
+  return data;
+}
+
 export {
   getArticles,
   getArticle,
   postRegisterUser,
-  postExistingUser
+  postExistingUser,
+  putExistingUser
 };
