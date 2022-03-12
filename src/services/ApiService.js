@@ -39,7 +39,7 @@ const postExistingUser = async (email, password) => {
     }
   );
   return data;
-}
+};
 
 const putExistingUser = async (username, email, password, image, token) => {
   const { data } = await axios.put(
@@ -56,6 +56,40 @@ const putExistingUser = async (username, email, password, image, token) => {
     }
   );
   return data;
+};
+
+const postCreateArticle = async (title, description, text, tagList, token) => {
+  const { data } = await axios.post(
+    `${apiBase}articles`, {
+      article: {
+        title,
+        description,
+        body: text,
+        tagList: tagList || []
+      }
+    }, 
+    {
+      headers: { Authorization: `Token ${token}`}
+    }
+  );
+  return data;
+};
+
+const putUpdateAticle = async (slug, title, description, text, tagList, token) => {
+  const { data } = await axios.put(
+    `${apiBase}articles/${slug}`, {
+      article: {
+        title,
+        description,
+        body: text,
+        tagList: tagList || []
+      }
+    }, 
+    {
+      headers: { Authorization: `Token ${token}`}
+    }
+  );
+  return data;
 }
 
 export {
@@ -63,5 +97,7 @@ export {
   getArticle,
   postRegisterUser,
   postExistingUser,
-  putExistingUser
+  putExistingUser,
+  postCreateArticle,
+  putUpdateAticle
 };

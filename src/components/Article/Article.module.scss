@@ -24,6 +24,10 @@
   flex-direction: column;
 }
 
+.article_main {
+  margin-top: 25px;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -118,5 +122,14 @@
 .spin {
   display: flex;
   justify-content: center;
+  margin-top: 30px;
+}
+
+.user-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
   margin-top: 30px;
 }

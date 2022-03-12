@@ -49,9 +49,11 @@ function Header() {
           </div>                    
         ) : (
           <div className={classes['header_login-user']}>
-            <Button type="text" size="large" className={classes['create-article']}>
-              Create article
-            </Button>
+            <Link to="/new-article">
+              <Button type="text" size="large" className={classes['create-article']}>
+                Create article
+              </Button>
+            </Link>
             <Link to="/profile" className={classes.user}>
               <div className={classes['user-name']}>
                 {username}

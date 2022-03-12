@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import shortid from 'shortid';
 import ReactMarkdown from 'react-markdown'
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { HeartOutlined } from '@ant-design/icons';
 import { format } from 'date-fns';
 
-import { Spin } from "antd";
+import { Spin, Button } from "antd";
 
 import foto from '../../image/profile-foto.png';
 
@@ -18,8 +18,10 @@ import classes from './Article.module.scss';
 function Article() {
   const article = useSelector((state) => state.article);
   const loading = useSelector((state) => state.loading);
+  const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
@@ -27,6 +29,10 @@ function Article() {
   }, [dispatch, id])
 
   const date = (article.updatedAt) ? format(new Date(article.updatedAt), "MMMM d',' yyyy") : null;
+
+  const onEditArticle = () => {
+    navigate(`/articles/${id}/edit`);
+  }
 
   return (
     loading ? (
@@ -60,19 +66,37 @@ function Article() {
             </div>
           </div>
 
-          <div className={classes.user}>
-            <div className={classes.user_info}>
-              <div className={classes.name}>
-              {article.author ? article.author.username : null}
+          <div className={classes['user-buttons']}>
+            <div className={classes.user}>
+              <div className={classes.user_info}>
+                <div className={classes.name}>
+                {article.author ? article.author.username : null}
+                </div>
+                <div className={classes.date}>
+                  {date}
+                </div>
               </div>
-              <div className={classes.date}>
-                {date}
+              <div className={classes.foto}>
+                <img src={article.author ? article.author.image : foto} alt="profile" />
               </div>
             </div>
-            <div className={classes.foto}>
-              <img src={article.author ? article.author.image : foto} alt="profile" />
-            </div>
-          </div>
+
+            {(article.author && user.username === article.author.username) ? (
+              <div className={classes.buttons}>
+                <Button type="primary" ghost danger style={{ borderRadius: 5, width: 78, height: 31 }}>
+                  Delete
+                </Button>
+                <Button type="primary"
+                        ghost
+                        onClick={onEditArticle}
+                        style={{ borderRadius: 5, width: 65, height: 31, border: '1px solid #52C41A', color: '#52C41A', marginLeft: 12 }}
+                >
+                  Edit
+                </Button>
+              </div>
+
+            ) : null}
+          </div>          
         </div>
 
         <div className={classes.article_main}>
