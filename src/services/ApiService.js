@@ -92,6 +92,15 @@ const putUpdateAticle = async (slug, title, description, text, tagList, token) =
   return data;
 }
 
+const deleteArticle = async (slug, token) => {
+  await axios.delete(
+    `${apiBase}articles/${slug}`, 
+    {
+      headers: { Authorization: `Token ${token}`}
+    }    
+  );
+};
+
 export {
   getArticles,
   getArticle,
@@ -99,5 +108,6 @@ export {
   postExistingUser,
   putExistingUser,
   postCreateArticle,
-  putUpdateAticle
+  putUpdateAticle,
+  deleteArticle
 };

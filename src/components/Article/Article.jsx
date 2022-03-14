@@ -7,11 +7,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { HeartOutlined } from '@ant-design/icons';
 import { format } from 'date-fns';
 
-import { Spin, Button } from "antd";
+import { Spin, Button, Popconfirm } from "antd";
 
 import foto from '../../image/profile-foto.png';
 
 import { getArticleData } from '../../store/actions';
+import { deleteArticle } from '../../services/ApiService';
 
 import classes from './Article.module.scss';
 
@@ -32,6 +33,12 @@ function Article() {
 
   const onEditArticle = () => {
     navigate(`/articles/${id}/edit`);
+  }
+
+  const onDeleteArticle = async () => {
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    await deleteArticle(id, token);
+    navigate(`/articles`);
   }
 
   return (
@@ -83,9 +90,20 @@ function Article() {
 
             {(article.author && user.username === article.author.username) ? (
               <div className={classes.buttons}>
-                <Button type="primary" ghost danger style={{ borderRadius: 5, width: 78, height: 31 }}>
-                  Delete
-                </Button>
+                <Popconfirm
+                  title="Are you sure to delete this article?"
+                  placement="right"
+                  onConfirm={onDeleteArticle}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  <Button type="primary"
+                          ghost
+                          danger
+                          style={{ borderRadius: 5, width: 78, height: 31 }}>
+                    Delete
+                  </Button>
+                </Popconfirm>
                 <Button type="primary"
                         ghost
                         onClick={onEditArticle}
