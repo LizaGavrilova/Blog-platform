@@ -3,7 +3,7 @@ import axios from 'axios';
 const apiBase = 'https://kata.academy:8021/api/';
 
 const getArticles = async (offset = 0) => {
-  const { token } = JSON.parse(localStorage.getItem('user'));
+  const { token } = JSON.parse(localStorage.getItem('user')) || '';
   const { data } = await axios.get(`${apiBase}articles?limit=5&offset=${offset}`, {
     headers: { Authorization: `Token ${token}` },
   });
@@ -11,7 +11,7 @@ const getArticles = async (offset = 0) => {
 };
 
 const getArticle = async (id) => {
-  const { token } = JSON.parse(localStorage.getItem('user'));
+  const { token } = JSON.parse(localStorage.getItem('user')) || '';
   const { data } = await axios.get(`${apiBase}articles/${id}`, {
     headers: { Authorization: `Token ${token}` },
   });

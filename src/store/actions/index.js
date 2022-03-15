@@ -71,31 +71,36 @@ const getArticleData = (slug) => async (dispatch) => {
 };
 
 const onFollowArticle = (slug, page) => async (dispatch) => {
-  const { token } = JSON.parse(localStorage.getItem('user'));
-  await postFavoritesArticle(slug, token);
+  const { token } = JSON.parse(localStorage.getItem('user')) || '';
 
-  const offset = (page - 1) * 5;
-  const data = await getArticles(offset);
-  const { articles } = data;
-  dispatch(addArticles(articles));
+  if (token) {
+    await postFavoritesArticle(slug, token);
 
-  const dataArticle = await getArticle(slug);
-  const { article: newArticle } = dataArticle;
-  dispatch(updateArticleData(newArticle));
+    const offset = (page - 1) * 5;
+    const data = await getArticles(offset);
+    const { articles } = data;
+    dispatch(addArticles(articles));
+
+    const dataArticle = await getArticle(slug);
+    const { article: newArticle } = dataArticle;
+    dispatch(updateArticleData(newArticle));
+  }
 };
 
 const unFollowArticle = (slug, page) => async (dispatch) => {
-  const { token } = JSON.parse(localStorage.getItem('user'));
-  await deleteFavoritesArticle(slug, token);
+  const { token } = JSON.parse(localStorage.getItem('user')) || '';
+  if (token) {
+    await deleteFavoritesArticle(slug, token);
 
-  const offset = (page - 1) * 5;
-  const data = await getArticles(offset);
-  const { articles } = data;
-  dispatch(addArticles(articles));
+    const offset = (page - 1) * 5;
+    const data = await getArticles(offset);
+    const { articles } = data;
+    dispatch(addArticles(articles));
 
-  const dataArticle = await getArticle(slug);
-  const { article: newArticle } = dataArticle;
-  dispatch(updateArticleData(newArticle));
+    const dataArticle = await getArticle(slug);
+    const { article: newArticle } = dataArticle;
+    dispatch(updateArticleData(newArticle));
+  }
 };
 
 export {
