@@ -40,14 +40,6 @@ const updateUserData = (data) => ({
   payload: data,
 });
 
-const getArticlesArr = () => async (dispatch) => {
-  const data = await getArticles();
-  const { articles, articlesCount } = data;
-  dispatch(addArticles(articles));
-  dispatch(updateArticlesCount(articlesCount));
-  dispatch(updateLoading(false));
-};
-
 const getNewArticles = (page) => async (dispatch) => {
   dispatch(updateLoading(true));
   const offset = (page - 1) * 5;
@@ -75,8 +67,8 @@ const onFollowArticle = (slug, page) => async (dispatch) => {
 
   if (token) {
     await postFavoritesArticle(slug, token);
-
     const offset = (page - 1) * 5;
+
     const data = await getArticles(offset);
     const { articles } = data;
     dispatch(addArticles(articles));
@@ -91,8 +83,8 @@ const unFollowArticle = (slug, page) => async (dispatch) => {
   const { token } = JSON.parse(localStorage.getItem('user')) || '';
   if (token) {
     await deleteFavoritesArticle(slug, token);
-
     const offset = (page - 1) * 5;
+
     const data = await getArticles(offset);
     const { articles } = data;
     dispatch(addArticles(articles));
@@ -112,7 +104,6 @@ export {
   updateArticleData,
   updateIsLogin,
   updateUserData,
-  getArticlesArr,
   getNewArticles,
   getArticleData,
   onFollowArticle,

@@ -5,7 +5,7 @@ import { List, Pagination, Spin } from 'antd';
 
 import { ArticleItem } from '../ArticleItem';
 
-import { getArticlesArr, getNewArticles } from '../../store/actions';
+import { getNewArticles } from '../../store/actions';
 
 import classes from './ArticleList.module.scss';
 
@@ -18,7 +18,7 @@ function ArticleList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getArticlesArr());
+    dispatch(getNewArticles(page));
   }, []);
 
   return loading ? (
