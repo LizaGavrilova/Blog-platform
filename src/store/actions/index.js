@@ -1,48 +1,48 @@
-import { getArticles, getArticle } from '../../services/ApiService';
+import { getArticles, getArticle, postFavoritesArticle, deleteFavoritesArticle } from '../../services/ApiService';
 
 const addArticles = (articles) => ({
   type: 'ADD_ARTICLES',
-  payload: articles
+  payload: articles,
 });
 
 const updateLoading = (value) => ({
   type: 'UPDATE_LOADING',
-  payload: value
+  payload: value,
 });
 
 const updateArticlesCount = (count) => ({
   type: 'UPDATE_ARTICLES_COUNT',
-  payload: count
+  payload: count,
 });
 
 const updatePage = (page) => ({
   type: 'UPDATE_PAGE',
-  payload: page
+  payload: page,
 });
 
 const updateOffset = (offset) => ({
   type: 'UPDATE_OFFSET',
-  payload: offset
+  payload: offset,
 });
 
 const updateArticleData = (data) => ({
   type: 'UPDATE_ARTICLE_DATA',
-  payload: data
+  payload: data,
 });
 
 const updateIsLogin = (value) => ({
   type: 'UPDATE_IS_LOGIN',
-  payload: value
-})
+  payload: value,
+});
 
 const updateUserData = (data) => ({
   type: 'UPDATE_USER_DATA',
-  payload: data
+  payload: data,
 });
 
 const getArticlesArr = () => async (dispatch) => {
   const data = await getArticles();
-  const { articles, articlesCount} = data;
+  const { articles, articlesCount } = data;
   dispatch(addArticles(articles));
   dispatch(updateArticlesCount(articlesCount));
   dispatch(updateLoading(false));
@@ -56,10 +56,10 @@ const getNewArticles = (page) => async (dispatch) => {
   dispatch(updatePage(page));
 
   const data = await getArticles(offset);
-  const { articles, articlesCount} = data;
+  const { articles, articlesCount } = data;
   dispatch(addArticles(articles));
-  dispatch(updateArticlesCount(articlesCount)); 
-  dispatch(updateLoading(false)); 
+  dispatch(updateArticlesCount(articlesCount));
+  dispatch(updateLoading(false));
 };
 
 const getArticleData = (slug) => async (dispatch) => {
@@ -68,7 +68,35 @@ const getArticleData = (slug) => async (dispatch) => {
   const { article } = data;
   dispatch(updateArticleData(article));
   dispatch(updateLoading(false));
-}
+};
+
+const onFollowArticle = (slug, page) => async (dispatch) => {
+  const { token } = JSON.parse(localStorage.getItem('user'));
+  await postFavoritesArticle(slug, token);
+
+  const offset = (page - 1) * 5;
+  const data = await getArticles(offset);
+  const { articles } = data;
+  dispatch(addArticles(articles));
+
+  const dataArticle = await getArticle(slug);
+  const { article: newArticle } = dataArticle;
+  dispatch(updateArticleData(newArticle));
+};
+
+const unFollowArticle = (slug, page) => async (dispatch) => {
+  const { token } = JSON.parse(localStorage.getItem('user'));
+  await deleteFavoritesArticle(slug, token);
+
+  const offset = (page - 1) * 5;
+  const data = await getArticles(offset);
+  const { articles } = data;
+  dispatch(addArticles(articles));
+
+  const dataArticle = await getArticle(slug);
+  const { article: newArticle } = dataArticle;
+  dispatch(updateArticleData(newArticle));
+};
 
 export {
   addArticles,
@@ -81,5 +109,7 @@ export {
   updateUserData,
   getArticlesArr,
   getNewArticles,
-  getArticleData
+  getArticleData,
+  onFollowArticle,
+  unFollowArticle,
 };

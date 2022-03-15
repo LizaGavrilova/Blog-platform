@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { Header } from '../Header';
@@ -16,23 +16,22 @@ function App() {
     <Router>
       <div className={classes.app}>
         <Header />
-        
+
         <div className={classes.main}>
           <Routes>
             <Route path="/" element={<ArticleList />} />
-            <Route path="/articles" element={<ArticleList />} />  
-            <Route path="/articles/:id" element={<Article />} />   
-            <Route path="/sign-in" element={<SignInForm />} />  
-            <Route path="/sign-up" element={<SignUpForm />} />  
-            <Route path="/profile" element={<EditProfile />} />  
+            <Route path="/articles" element={<ArticleList />} />
+            <Route path="/articles/:id" element={<Article />} />
+            <Route path="/sign-in" element={<SignInForm />} />
+            <Route path="/sign-up" element={<SignUpForm />} />
+            <Route path="/profile" element={<EditProfile />} />
             <Route path="/new-article" element={<ArticleForm />} />
             <Route path="/articles/:id/edit" element={<ArticleForm />} />
           </Routes>
         </div>
       </div>
     </Router>
-  )
+  );
 }
 
 export default App;
-

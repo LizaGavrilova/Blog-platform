@@ -3,7 +3,7 @@
   min-height: calc(100vh - 180px);
   height: auto;
   padding: 15px 19px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 5px;
 
   display: flex;
@@ -38,7 +38,7 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
-  color: #1890FF;
+  color: #1890ff;
 
   margin-right: 13px;
 }
@@ -51,10 +51,10 @@
   line-height: 22px;
   color: rgba(0, 0, 0, 0.75);
 
-  margin-left: 5px;  
+  margin-left: 5px;
 }
 
-.tags{
+.tags {
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -112,11 +112,10 @@
 }
 
 .foto {
-
   & > img {
     width: 46px;
     height: 46px;
-  }  
+  }
 }
 
 .spin {

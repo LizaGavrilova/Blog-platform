@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { List, Pagination, Spin } from "antd";
+import { List, Pagination, Spin } from 'antd';
 
 import { ArticleItem } from '../ArticleItem';
 
@@ -21,38 +21,34 @@ function ArticleList() {
     dispatch(getArticlesArr());
   }, []);
 
-  return (
-    loading ? (
-      <div className={classes.spin}>
-        <Spin
-          size="large"
-        />
-      </div>
-    ) : (
-      <div className={classes.article_list}>
-        <List
-          dataSource={articles}
-          renderItem={(article) => (
-            <List.Item>
-              <ArticleItem item={article} />
-            </List.Item>
-          )}
-        />
+  return loading ? (
+    <div className={classes.spin}>
+      <Spin size="large" />
+    </div>
+  ) : (
+    <div className={classes.article_list}>
+      <List
+        dataSource={articles}
+        renderItem={(article) => (
+          <List.Item>
+            <ArticleItem item={article} />
+          </List.Item>
+        )}
+      />
 
-        <div className={classes.pagination}>
-          <Pagination
-            current={page}
-            total={articlesCount}
-            pageSize={5}
-            onChange={(value) => {
-              dispatch(getNewArticles(value))
-            }}
-            size="small"
-          />
-        </div>      
+      <div className={classes.pagination}>
+        <Pagination
+          current={page}
+          total={articlesCount}
+          pageSize={5}
+          onChange={(value) => {
+            dispatch(getNewArticles(value));
+          }}
+          size="small"
+        />
       </div>
-    )
-  )
+    </div>
+  );
 }
 
 export default ArticleList;

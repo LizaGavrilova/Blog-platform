@@ -1,6 +1,6 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Button, Form, Input } from 'antd';
 
@@ -17,7 +17,7 @@ function SignInForm() {
 
   const onSubmit = async (values) => {
     const { email, password } = values;
-    const { user } = await postExistingUser( email, password);
+    const { user } = await postExistingUser(email, password);
 
     localStorage.setItem('user', JSON.stringify(user));
 
@@ -26,23 +26,20 @@ function SignInForm() {
 
     form.resetFields();
     navigate('/articles');
-  }
+  };
 
   return (
     <div className={classes['sign-in-form']}>
-      <div className={classes.header}>
-        Sign In
-      </div>
+      <div className={classes.header}>Sign In</div>
 
       <div className={classes.main}>
         <Form form={form} name="sign-in" className={classes.form} onFinish={onSubmit}>
           <span className={classes.email}>Email address</span>
-          <Form.Item name="email"
-                    rules={[{required: true, type: 'email', message: 'Please input email'}]}>
+          <Form.Item name="email" rules={[{ required: true, type: 'email', message: 'Please input email' }]}>
             <Input placeholder="Email address" />
           </Form.Item>
           <span className={classes.password}>Password</span>
-          <Form.Item name="password" rules={[{required: true, message: 'Please input password'}]}>
+          <Form.Item name="password" rules={[{ required: true, message: 'Please input password' }]}>
             <Input.Password placeholder="Password" />
           </Form.Item>
           <Form.Item>
@@ -59,7 +56,7 @@ function SignInForm() {
         </Form>
       </div>
     </div>
-  )
+  );
 }
 
 export default SignInForm;

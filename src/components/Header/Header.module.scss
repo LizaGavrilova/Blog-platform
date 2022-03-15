@@ -1,5 +1,5 @@
 .header {
-  background: #FFFFFF;
+  background: #ffffff;
 
   display: flex;
   flex-direction: row;
@@ -26,23 +26,24 @@
 
     button {
       border: 1px solid white;
-      outline: none; 
+      outline: none;
       background: none;
       cursor: pointer;
       font-size: 18px !important;
       line-height: 28px !important;
       color: rgba(0, 0, 0, 0.85);
 
-      &:first-child {           
+      &:first-child {
         margin-right: 5px;
       }
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-color: white;
-        border: 1px solid #52C41A;
+        border: 1px solid #52c41a;
         box-sizing: border-box;
         border-radius: 5px;
-        color: #52C41A;
+        color: #52c41a;
       }
     }
   }
@@ -60,21 +61,22 @@
     align-items: center;
 
     border: 1px solid white;
-    outline: none; 
+    outline: none;
     background: none;
 
     font-size: 14px;
     line-height: 22px;
     color: rgba(0, 0, 0, 0.85);
-    
+
     margin-right: 26px;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: white;
-      border: 1px solid #52C41A;
+      border: 1px solid #52c41a;
       box-sizing: border-box;
       border-radius: 5px;
-      color: #52C41A;
+      color: #52c41a;
     }
   }
 }
@@ -82,7 +84,7 @@
 .user {
   display: flex;
   justify-content: center;
-  align-items: center;    
+  align-items: center;
 }
 
 .user-name {
@@ -108,14 +110,15 @@
   align-items: center;
 
   border: 1px solid white;
-  outline: none; 
+  outline: none;
   background: none;
 
   font-size: 18px;
   line-height: 28px;
   color: rgba(0, 0, 0, 0.85);
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border: 1px solid rgba(0, 0, 0, 0.75);
     box-sizing: border-box;
     border-radius: 5px;
